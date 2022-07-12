@@ -14,6 +14,7 @@ import com.example.roomwordsample.dataBase.Word
 import com.example.roomwordsample.dataBase.WordsApplication
 import com.example.roomwordsample.viewModel.WordViewModel
 import com.example.roomwordsample.viewModel.WordViewModelFactory
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     private val newWordActivityRequestCode = 1
@@ -36,6 +37,13 @@ class MainActivity : AppCompatActivity() {
         wordViewModel.allWords.observe(this, Observer { words ->
             words?.let { adapter.submitList(it) }
         })
+
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener {
+            val intent = Intent(this@MainActivity, NewWorldActivity::class.java)
+            startActivityForResult(intent, newWordActivityRequestCode)
+        }
+
     }
 
 
